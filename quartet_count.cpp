@@ -470,8 +470,8 @@ std::vector<std::unique_ptr<Tree>> readNewickFile(const std::string& fileName, s
         std::ifstream ifs(fileName);
         if (!ifs)
         {
-            std::cout << "ファイルが開けませんでした。" << std::endl;
-            std::cin.get();
+            std::cerr << "ERROR: Could not open input file." << std::endl;
+            std::exit(1);
             return std::vector<std::unique_ptr<Tree>>{};
         }
         
@@ -594,16 +594,6 @@ std::string create_quartfile(std::function<int(int,int,int)> picking_rule, const
 }
 
 
-void produce_quartfile(){
-        std::ofstream ofs("hello.txt");
-    if (!ofs) {
-        std::cerr << "ファイルオープンに失敗" << std::endl;
-        std::exit(1);
-    }
-
-    ofs << "Hello, World" << std::endl;
-}
-
 int check_main(){
 // std::unique_ptr<Taxa> taxa = std::make_unique<Taxa>();
     // NewickParser newickParser;
@@ -701,10 +691,10 @@ int main(int argc, char* argv[]){
 
     std::ofstream ofs(outputFile);
     if (!ofs) {
-        std::cerr << "ファイルオープンに失敗" << std::endl;
+        std::cerr << "ERROR: Failed to open output file." << std::endl;
         std::exit(1);
     }
 
-    ofs << quartfile << std::endl;
+    ofs << quartfile;
     return 0;
 }
