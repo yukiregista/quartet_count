@@ -11,10 +11,15 @@ Output: Most occuring quartet topologies. See `examples/example_quartfile` for t
 
 
 ## Usage
+### Download/Compiles
+```
+git clone https://github.com/yukiregista/quartet_count.git
+cd quartet_count
+make
+```
 
-`make` will compile `quartet_count.cpp` and creates an executable `quartet_count`.
-
-To run the program, you need to pass --input and --output.
+### Run the program
+You need to pass --input (input file path) and --output (output file path).
 ```
 quartet_count --input examples/example.tre --output examples/example_quartfile
 ```
