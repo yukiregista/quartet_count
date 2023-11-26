@@ -16,5 +16,5 @@ Output: Most occuring quartet topologies. See examples/example.out for the struc
 
 To run the program, you need to pass --input and --output.
 ```
-    quartet_count --input examples/example.tre --output examples/example.out
+quartet_count --input examples/example.tre --output examples/example.out
 ```
