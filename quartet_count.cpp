@@ -575,13 +575,13 @@ std::string create_quartfile(std::function<int(int,int,int)> picking_rule, const
                     // std::cout << "TYPE: " << type << std::endl;
                     if (type==0){
                         //type 0 (1,2) | (3,4)
-                        quartfile_str += std::to_string(i) + " " + std::to_string(j) + " | " + std::to_string(k) + " " + std::to_string(l) + "\n";
+                        quartfile_str += std::to_string(i) + " " + std::to_string(j) + " || " + std::to_string(k) + " " + std::to_string(l) + "\n";
                     }else if(type==1){
                         //type 1 (1,3) | (2,4)
-                        quartfile_str += std::to_string(i) + " " + std::to_string(k) + " | " + std::to_string(j) + " " + std::to_string(l) + "\n";
+                        quartfile_str += std::to_string(i) + " " + std::to_string(k) + " || " + std::to_string(j) + " " + std::to_string(l) + "\n";
                     }else if(type==2){
                         //type 1 (1,4) | (2,3)
-                        quartfile_str += std::to_string(i) + " " + std::to_string(l) + " | " + std::to_string(j) + " " + std::to_string(k) + "\n";
+                        quartfile_str += std::to_string(i) + " " + std::to_string(l) + " || " + std::to_string(j) + " " + std::to_string(k) + "\n";
                     }
                     // if other than 0,1,2, do nothing.
                     count++;
