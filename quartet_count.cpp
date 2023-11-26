@@ -508,7 +508,7 @@ std::vector<int> count_quartets(std::vector<std::unique_ptr<Tree>>& trees){
     std::vector<int> quartet_counts(nC4*3, 0);
     int count = 0;
     for (std::unique_ptr<Tree> & tree : trees){
-        std::cout << "Tree" << count++ << std::endl;
+        // std::cout << "Tree" << count++ << std::endl;
         // count quartets in the tree.
         // Iteration over leaf nodes
         for (int reroot_index=1; reroot_index <= n_taxa-3; reroot_index++){
@@ -679,9 +679,9 @@ int main(int argc, char* argv[]){
     //phylogeneticTree[0]->postOrderTraversal(printTerminalId, *phylogeneticTree[0]->root);//ok
 
 
-
+    std::cout << "Counting...\n";
     std::vector<int> quartet_counts = count_quartets(phylogeneticTree);
-
+    std::cout << "Counting end.\n";
 
     const std::vector<std::string>& taxonNames = taxa->getTaxonNames();
     int n_taxa = taxa->getNextId() - 1;
