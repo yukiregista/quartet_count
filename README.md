@@ -21,5 +21,5 @@ make
 ### Run the program
 You need to pass --input (input file path) and --output (output file path).
 ```
-quartet_count --input examples/example.tre --output examples/example_quartfile
+./quartet_count --input examples/example.tre --output examples/example_quartfile
 ```
