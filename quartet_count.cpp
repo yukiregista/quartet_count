@@ -594,49 +594,6 @@ std::string create_quartfile(std::function<int(int,int,int)> picking_rule, const
 }
 
 
-// int check_main(){
-// std::unique_ptr<Taxa> taxa = std::make_unique<Taxa>();
-    // NewickParser newickParser;
-    // std::vector<std::unique_ptr<Tree>> phylogeneticTree = newickParser.parseNewick("((A,B),(C,D),E,F);\n ((A,B),(C,E),(D,F))", taxa); //ok
-    // for (int i=0; i<phylogeneticTree.size(); i++){
-    //     phylogeneticTree[i]->printAsciiTree(*(phylogeneticTree[i]->root), 0);
-    //     std::cout << std::endl;
-    // }
-    // phylogeneticTree[0]->nodes[-3]->getTerminal_taxon_IDs();
-    // phylogeneticTree[0]->postOrderTraversal_change(set_terminal_taxon_IDs, *phylogeneticTree[0]->root);
-    // std::cout << "a" << std::endl;
-
-    // phylogeneticTree[0]->postOrderTraversal_change(set_terminal_taxon_IDs, *phylogeneticTree[0]->root);//ok
-    // for (auto item : phylogeneticTree[0]->root->getTerminal_taxon_IDs()){
-    //     std::cout << item << std::endl;
-    // }
-    // phylogeneticTree[0]->postOrderTraversal(printTerminalId, *phylogeneticTree[0]->root);//ok
-
-    // // rerooting
-    // phylogeneticTree[0]->reroot_with_leaf_ind(1);
-    // phylogeneticTree[0]->printAsciiTree(*(phylogeneticTree[0]->root), 0);
-    // // reset terminals
-    // phylogeneticTree[0]->postOrderTraversal_change(reset_terminal_taxon_IDs, *phylogeneticTree[0]->root);
-    // phylogeneticTree[0]->postOrderTraversal(printTerminalId, *phylogeneticTree[0]->root);//ok
-
-
-    // Check implementation of Combinations_to_unique_number ->OK
-    // int n_taxa = 50; int prev = -1;
-    // for (int i=n_taxa-3; i>=1; i--){
-    //     for (int j=n_taxa-2; j>i; j--){
-    //         for (int k=n_taxa-1; k>j; k--){
-    //             for (int l=n_taxa; l>k; l--){
-    //                 std::array<int,4> check{i,j,k,l};
-    //                 int now = Combinations_to_Unique_Number(check, n_taxa);
-    //                 if (now-prev !=1){std::cout << "error";}
-    //                 prev = now;
-    //             }
-    //         }
-    //     }
-    // }
-
-//     return 0;
-// }
 
 int main(int argc, char* argv[]){
     std::string inputFile="NULL";
