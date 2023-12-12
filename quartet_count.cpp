@@ -594,7 +594,7 @@ std::string create_quartfile(std::function<int(int,int,int)> picking_rule, const
 }
 
 
-int check_main(){
+// int check_main(){
 // std::unique_ptr<Taxa> taxa = std::make_unique<Taxa>();
     // NewickParser newickParser;
     // std::vector<std::unique_ptr<Tree>> phylogeneticTree = newickParser.parseNewick("((A,B),(C,D),E,F);\n ((A,B),(C,E),(D,F))", taxa); //ok
@@ -635,8 +635,8 @@ int check_main(){
     //     }
     // }
 
-    return 0;
-}
+//     return 0;
+// }
 
 int main(int argc, char* argv[]){
     std::string inputFile="NULL";
