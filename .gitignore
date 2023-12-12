@@ -30,3 +30,18 @@
 *.exe
 *.out
 *.app
+
+
+# experiment codes
+experiment/
+
+# vscode
+.vscode/
+
+# files
+a.txt
+quartfile
+*_legacy
+
+# execution file
+quartet_count
