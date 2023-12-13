@@ -475,6 +475,9 @@ std::vector<std::unique_ptr<Tree>> readNewickFile(const std::string& fileName, s
             return std::vector<std::unique_ptr<Tree>>{};
         }
         
+        std::string buf1; std::string buf2;
+
+
         std::string buf;
         while (!ifs.eof())
         {
@@ -594,6 +597,35 @@ std::string create_quartfile(std::function<int(int,int,int)> picking_rule, const
 }
 
 
+std::string create_quartcount(const std::vector<int>& quart_counts, const std::vector<std::string>& taxonNames, const int n_taxa){
+    std::string quartcount_str = std::to_string(n_taxa) + "\n";
+    // First write index to taxa correspondence.
+    for (int i=1; i<= n_taxa; i++){
+        quartcount_str += std::to_string(i) + " " + taxonNames[i-1] + "\n";
+    }
+    quartcount_str += "\n";
+
+    // Write suitable quartets
+    int count = 0;
+    for (int i=n_taxa-3; i>=1; i--){
+        for (int j=n_taxa-2; j>i; j--){
+            for (int k=n_taxa-1; k>j; k--){
+                for (int l=n_taxa; l>k; l--){
+                    quartcount_str += std::to_string(i) + " " + std::to_string(j) + " || " + std::to_string(k) + " " + std::to_string(l) + "; ";
+                    quartcount_str += std::to_string(i) + " " + std::to_string(k) + " || " + std::to_string(j) + " " + std::to_string(l) + "; ";
+                    quartcount_str += std::to_string(i) + " " + std::to_string(l) + " || " + std::to_string(j) + " " + std::to_string(k) + ";\n";
+                    quartcount_str += std::to_string(quart_counts[3*count]) + " " + std::to_string(quart_counts[3*count+1]) + " " + std::to_string(quart_counts[3*count+2]) + "\n";
+                    // if other than 0,1,2, do nothing.
+                    count++;
+                }
+            }
+        }
+    }
+    //std::cout << quartfile_str << std::endl;
+    return quartcount_str;
+}
+
+
 
 int main(int argc, char* argv[]){
     std::string inputFile="NULL";
@@ -642,9 +674,13 @@ int main(int argc, char* argv[]){
 
     const std::vector<std::string>& taxonNames = taxa->getTaxonNames();
     int n_taxa = taxa->getNextId() - 1;
-    std::string quartfile = create_quartfile(most_present_rule, quartet_counts, taxonNames, n_taxa);
 
-    //write quartfile to outputFile
+    //create quartcount
+    std::string quartcount = create_quartcount(quartet_counts, taxonNames, n_taxa);
+
+    //std::string quartfile = create_quartfile(most_present_rule, quartet_counts, taxonNames, n_taxa);
+
+    //write quartcount to outputFile
 
     std::ofstream ofs(outputFile);
     if (!ofs) {
@@ -652,6 +688,6 @@ int main(int argc, char* argv[]){
         std::exit(1);
     }
 
-    ofs << quartfile;
+    ofs << quartcount;
     return 0;
 }
