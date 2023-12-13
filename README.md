@@ -49,7 +49,7 @@ By default, "most-present" rule is applied.
 ./quartet_count --input examples/quartcount --output examples/quartfile1 --picking-rule most-present
 
 ## This will also pick by most-present rule.
-./quartet_count --input examples/quartcount --output examples/quartfile2 --picking-rule most-present
+./quartet_count --input examples/quartcount --output examples/quartfile2
 
 ## pick quartet topologies by majority rule
 ./quartet_count --input examples/quartcount --output examples/quartfile3 --picking-rule majority
