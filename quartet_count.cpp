@@ -545,60 +545,10 @@ std::vector<int> count_quartets(std::vector<std::unique_ptr<Tree>>& trees){
     return quartet_counts;
 }
 
-int most_present_rule(int x0, int x1, int x2){
-    // returns the most present index 0..2
-    std::vector<int> compare{x0,x1,x2};
-    std::vector<int>::iterator result;
-    result = std::max_element(compare.begin(), compare.end());
-    int count = std::count(compare.begin(), compare.end(), *result);
-    // std::cout << "COUNT" << count << std::endl;
-    if (count==1){
-        // std::cout << "HERE" << std::endl;
-        return std::distance(compare.begin(), result);
-    }
-    return -1;
-}
-
-std::string create_quartfile(std::function<int(int,int,int)> picking_rule, const std::vector<int>& quart_counts, const std::vector<std::string>& taxonNames, const int n_taxa){
-    std::string quartfile_str = std::to_string(n_taxa) + "\n";
-    // First write index to taxa correspondence.
-    for (int i=1; i<= n_taxa; i++){
-        quartfile_str += std::to_string(i) + " " + taxonNames[i-1] + "\n";
-    }
-    quartfile_str += "\n";
-
-    // Write suitable quartets
-    int count = 0;
-    for (int i=n_taxa-3; i>=1; i--){
-        for (int j=n_taxa-2; j>i; j--){
-            for (int k=n_taxa-1; k>j; k--){
-                for (int l=n_taxa; l>k; l--){
-                    // std::cout << "QCOUNTS" << quart_counts[3*count] <<  quart_counts[3*count+1] << quart_counts[3*count+2] << std::endl;
-                    int type = picking_rule(quart_counts[3*count], quart_counts[3*count+1],quart_counts[3*count+2]);
-                    // std::cout << "TYPE: " << type << std::endl;
-                    if (type==0){
-                        //type 0 (1,2) | (3,4)
-                        quartfile_str += std::to_string(i) + " " + std::to_string(j) + " || " + std::to_string(k) + " " + std::to_string(l) + "\n";
-                    }else if(type==1){
-                        //type 1 (1,3) | (2,4)
-                        quartfile_str += std::to_string(i) + " " + std::to_string(k) + " || " + std::to_string(j) + " " + std::to_string(l) + "\n";
-                    }else if(type==2){
-                        //type 1 (1,4) | (2,3)
-                        quartfile_str += std::to_string(i) + " " + std::to_string(l) + " || " + std::to_string(j) + " " + std::to_string(k) + "\n";
-                    }
-                    // if other than 0,1,2, do nothing.
-                    count++;
-                }
-            }
-        }
-    }
-    //std::cout << quartfile_str << std::endl;
-    return quartfile_str;
-}
 
 
-std::string create_quartcount(const std::vector<int>& quart_counts, const std::vector<std::string>& taxonNames, const int n_taxa){
-    std::string quartcount_str = std::to_string(n_taxa) + "\n";
+std::string create_quartcount(const std::vector<int>& quart_counts, const std::vector<std::string>& taxonNames, const int n_taxa, const int n_trees){
+    std::string quartcount_str = std::to_string(n_taxa) + " " + std::to_string(n_trees) + "\n";
     // First write index to taxa correspondence.
     for (int i=1; i<= n_taxa; i++){
         quartcount_str += std::to_string(i) + " " + taxonNames[i-1] + "\n";
@@ -674,9 +624,9 @@ int main(int argc, char* argv[]){
 
     const std::vector<std::string>& taxonNames = taxa->getTaxonNames();
     int n_taxa = taxa->getNextId() - 1;
-
+    int n_trees = phylogeneticTree.size();
     //create quartcount
-    std::string quartcount = create_quartcount(quartet_counts, taxonNames, n_taxa);
+    std::string quartcount = create_quartcount(quartet_counts, taxonNames, n_taxa, n_trees);
 
     //std::string quartfile = create_quartfile(most_present_rule, quartet_counts, taxonNames, n_taxa);
 
