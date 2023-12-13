@@ -9,8 +9,6 @@ This program can be used to create an input to qstar algorithm.
 
 I have only tested this code with mac OS and linux.
 
-## quartet_count
-
 ## Inputs/Outputs
 ### quartet_count
 Input: (pure) newick file containing multiple trees. It should only contain newick trees (possibly with branch lengths, although we don't account for branch lengths now), without any annotaions or rooting information (like [\&U]) that is usually added for nexus files. See `examples/example.tre` for an example.
