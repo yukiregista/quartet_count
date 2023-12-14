@@ -4,6 +4,9 @@
 #include <string>
 #include <map>
 #include <sstream>
+#include <algorithm>
+#include <functional>
+
 
 
 int most_present_rule(int x0, int x1, int x2, int n_trees){
